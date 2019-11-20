@@ -1,0 +1,16 @@
+{
+  "extends": "tslint:recommended",
+  "defaultSeverity": "warning",
+  "rules": {
+    "max-line-length": [
+      true,
+      150
+    ],
+    "no-console": false,
+    "object-literal-shorthand": [
+      true,
+      "never"
+    ],
+    "object-literal-sort-keys": false
+  }
+}

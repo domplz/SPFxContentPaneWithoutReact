@@ -1,0 +1,12 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/package-solution.schema.json",
+  "solution": {
+    "name": "property-pane-poc-client-side-solution",
+    "id": "77aaf345-56e1-494f-9a33-6ef80c1551a6",
+    "version": "1.0.0.0",
+    "includeClientSideAssets": true
+  },
+  "paths": {
+    "zippedPackage": "solution/property-pane-poc.sppkg"
+  }
+}

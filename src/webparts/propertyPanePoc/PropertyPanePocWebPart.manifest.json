@@ -1,0 +1,21 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx/client-side-web-part-manifest.schema.json",
+  "id": "755ed166-c657-4ea4-a425-e606af23f410",
+  "alias": "PropertyPanePocWebPart",
+  "componentType": "WebPart",
+  "version": "*",
+  "manifestVersion": 2,
+  "requiresCustomScript": false,
+
+  "preconfiguredEntries": [{
+    "groupId": "5c03119e-3074-46fd-976b-c60198311f70",
+    "group": { "default": "Other" },
+    "title": { "default": "propertyPanePoc" },
+    "description": { "default": "propertyPanePoc description" },
+    "officeFabricIconFontName": "Page",
+    "properties": {
+      "description": "propertyPanePoc",
+      "WebpartDate": {}
+    }
+  }]
+}
