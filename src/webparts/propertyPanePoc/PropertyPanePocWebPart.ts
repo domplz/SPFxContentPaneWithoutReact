@@ -34,6 +34,7 @@ export default class PropertyPanePocWebPart extends BaseClientSideWebPart<IWebpa
                   label: strings.DescriptionFieldLabel,
                 }),
                 PropertyPaneDateField("WebpartDate", {
+                  Label: "Datum eingeben",
                   DayLabel: "Tag",
                   MonthLabel: "Monat",
                   YearLabel: "Jahr",

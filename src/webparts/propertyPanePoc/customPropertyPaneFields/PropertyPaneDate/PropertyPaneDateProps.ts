@@ -4,6 +4,7 @@ export interface IPropertyPaneDateProps {
 
     Value: Date;
 
+    Label: string;
     DayLabel: string;
     MonthLabel: string;
     YearLabel: string;
