@@ -7,9 +7,8 @@ export class PropertyPaneDate implements IPropertyPaneField<IPropertyPaneDatePro
     public shouldFocus?: boolean;
     public properties: IPropertyPaneDatePropsInternal;
 
-    private value: Date;
-
     constructor(targetProperty: string, configuration: IPropertyPaneDateProps) {
+
         this.targetProperty = targetProperty;
         this.shouldFocus = false;
         this.type = PropertyPaneFieldType.Custom;
@@ -18,13 +17,11 @@ export class PropertyPaneDate implements IPropertyPaneField<IPropertyPaneDatePro
             MonthLabel: configuration.MonthLabel,
             YearLabel: configuration.YearLabel,
             ButtonLabel: configuration.ButtonLabel,
-            DefaultValue: configuration.DefaultValue,
+            Value: configuration.Value ? new Date(configuration.Value.toString()) : new Date(2000, 0, 1),
 
             key: targetProperty,
             onRender: this.render.bind(this),
         };
-
-        this.value = this.properties.DefaultValue;
     }
 
     private render(domElement: HTMLElement, context?: any, changeCallback?: (targetProperty?: string, newValue?: any) => void): void {
@@ -35,26 +32,29 @@ export class PropertyPaneDate implements IPropertyPaneField<IPropertyPaneDatePro
 
     private createHtml(changeCallback: (targetProperty?: string, newValue?: any) => void): HTMLElement {
 
+        const validationElement = document.createElement("div");
+        validationElement.className = "validation-message";
+
         const yearInputElement = document.createElement("input");
         yearInputElement.type = "number";
         yearInputElement.min = "0";
         yearInputElement.max = "9999";
         yearInputElement.placeholder = this.properties.YearLabel;
-        yearInputElement.value = this.value.getFullYear().toString();
+        yearInputElement.value = this.properties.Value.getFullYear().toString();
 
         const monthInputElement = document.createElement("input");
         monthInputElement.type = "number";
         monthInputElement.min = "1";
         monthInputElement.max = "12";
         monthInputElement.placeholder = this.properties.MonthLabel;
-        monthInputElement.value = (this.value.getMonth() + 1).toString();
+        monthInputElement.value = (this.properties.Value.getMonth() + 1).toString();
 
         const dayInputElement = document.createElement("input");
         dayInputElement.type = "number";
         dayInputElement.min = "1";
         dayInputElement.max = "31";
         dayInputElement.placeholder = this.properties.DayLabel;
-        dayInputElement.value = this.value.getDate().toString();
+        dayInputElement.value = this.properties.Value.getDate().toString();
 
         const buttonElement = document.createElement("button");
         buttonElement.innerText = this.properties.ButtonLabel;
@@ -66,10 +66,10 @@ export class PropertyPaneDate implements IPropertyPaneField<IPropertyPaneDatePro
             const date = this.getDateIfValid(yearValue, monthValue, dayValue);
 
             if (date) {
-                this.value = date;
+                // this.properties.Value = date;
                 changeCallback(this.targetProperty, date);
             } else {
-                alert("date invalid");
+                validationElement.innerHTML = "Date is invalid";
             }
         };
 
@@ -78,6 +78,7 @@ export class PropertyPaneDate implements IPropertyPaneField<IPropertyPaneDatePro
         controlElement.appendChild(yearInputElement);
         controlElement.appendChild(monthInputElement);
         controlElement.appendChild(dayInputElement);
+        controlElement.appendChild(validationElement);
         controlElement.appendChild(buttonElement);
 
         return controlElement;

@@ -38,7 +38,7 @@ export default class PropertyPanePocWebPart extends BaseClientSideWebPart<IWebpa
                   MonthLabel: "Monat",
                   YearLabel: "Jahr",
                   ButtonLabel: "Bestätigen",
-                  DefaultValue: new Date(2000, 0, 1),
+                  Value: this.properties.WebpartDate,
                 }),
               ],
             },
